@@ -3,12 +3,22 @@
 #include <iomanip>
 #include <chrono>
 #include <string>
+#include <tuple>
+#include <cstdlib>
 
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::tuple;
+
+const static int adjacentRooms[24][2] = {
+	{1, 5}, {1, 2}, {2, 3}, {2, 6}, {3, 7}, {3, 4},
+	{4, 8}, {5, 9}, {5, 6}, {6, 7}, {6, 10}, {7, 8},
+	{7, 11}, {8, 12}, {9, 13}, {9, 10}, {10, 11}, {10, 14},
+	{11, 12}, {11, 15}, {12, 16}, {13, 14}, {14, 15}, {15, 16}
+};
 
 void Rules::buildEnvironment()
 {
@@ -27,13 +37,16 @@ void Rules::buildEnvironment()
 		}
 	}
 
+	for (int i = 0; i < 4; ++i)
+	{
+		adjacentRoom[i] = 0;
+	}
+
 	// before pits, gold, agent, wumpus are intialized
 	bool wumpus = false;
 	bool agent = false;
 	bool gold = false;
 	bool pits = false;
-
-	int row, col;
 	
 	// add pits
 	cout << "Adding a Pits..." << endl;
@@ -41,13 +54,14 @@ void Rules::buildEnvironment()
 	{
 		int countNoPits = 0;
 		RowAndColOfPits:
+			num = this->generateRandomNo(1, 16);
 			row = this->generateRandomNo(0, 3);
 			col = this->generateRandomNo(0, 3);
 		while(countNoPits < 3)
 		{
 			if (rooms[row][col] == 0)
 			{
-				rooms[row][col] = 'P';
+				rooms[row][col] = num;
 				countNoPits+=1;
 				cout << countNoPits << ":" << rooms[row][col] <<endl;
 			}
@@ -62,20 +76,21 @@ void Rules::buildEnvironment()
 
 	// add agent
 	cout << "Adding an Agent..." << endl;
-	rooms[3][0] = 'A';
+	rooms[3][0] = 13;
 	cout << "An agen is: " << rooms[3][0] << endl;
 	agent = true;
 
 	//add gold
 	cout << "Adding a Gold..." << endl;
 	RowAndColOfGold:
+		num = this->generateRandomNo(1, 16);
 		row = this->generateRandomNo(0, 3);
 		col = this->generateRandomNo(0, 3);
 	while(!gold)
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = 'G';
+			rooms[row][col] = num;
 			cout <<"Gold is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -89,6 +104,7 @@ void Rules::buildEnvironment()
 	// add wumpus
 	cout << "Adding a wumpus..." << endl;
 	RowAndColOfWumpus:
+		num = this->generateRandomNo(1, 16);
 		row = this->generateRandomNo(0, 3);
 		col = this->generateRandomNo(0, 3);
 
@@ -96,7 +112,7 @@ void Rules::buildEnvironment()
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = 'W';
+			rooms[row][col] = num;
 			cout <<"Wumpus is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -105,6 +121,75 @@ void Rules::buildEnvironment()
 		}
 
 		wumpus = true;
+	}
+}
+
+int* Rules::findAdjacentRooms(int CurrentAgent)
+{
+	for (int i = 0; i < 24; i++)
+	{
+		
+		for (int j = 0; j < 2; j++)
+		{
+			if (adjacentRooms[i][j] == CurrentAgent)
+			{
+
+				if (j == 1)
+				{
+					adjacentRoom[size] = adjacentRooms[i][j - 1];
+					size+=1;
+				}
+				else if (j == 0)
+				{
+					adjacentRoom[size] = adjacentRooms[i][j + 1];
+					size+=1;
+				}
+			}
+		}
+	}
+
+	return adjacentRoom;
+}
+bool Rules::isAdjacentRooms(int roomA, int roomB)
+{
+	for (int i = 0; i < 2; ++i)
+	{
+		if (adjacentRooms[roomA][i] == roomB)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+};
+
+void Rules::movement()
+{
+	for (int i = 0; i < 1; i++)
+	{
+		for (int j = 0; i < 11; j++)
+		{
+			if (i == 0 and j == 0)
+			{	
+				Okrooms[i][j] = rooms[3][0];
+				continue;
+			}
+			Okrooms[i][j] = 0;
+			if (j == 10)
+			{
+				break;
+			}
+		}
+	}
+
+	for (int i = 0; i < 24; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			cout << adjacentRooms[i][j] << endl;
+		}
 	}
 }
 
@@ -118,5 +203,17 @@ int main()
 {
 	Rules rule;
 	rule.buildEnvironment();
+	int* ad = rule.findAdjacentRooms(13);
+	for (int i = 0; i < 4; i++)
+	{
+		if (*(ad + i) == 0)
+		{
+			continue;
+		}
+
+		cout << *(ad + i) << endl;
+	}
+	bool val = rule.isAdjacentRooms(13, 9);
+	// rule.movement();
 	return 0;
 }
