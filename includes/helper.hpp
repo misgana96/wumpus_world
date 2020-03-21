@@ -1,11 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include <array>
 
 
 using std::tuple;
-using std::array;
 
 struct values
 {

@@ -2,13 +2,11 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include <array>
 #include <map>
 
 using std::cout;
 using std::endl;
 using std::tuple;
-using std::array;
 using std::map;
 
 
@@ -24,82 +22,22 @@ std::map<char, char> Truthmap =
 */
 bool TruthValues::Negation(bool A)
 {
-	if (A == true)
-	{
-		return false;
-	}
-	else if (A == false)
-	{
-		return true;
-	}
-	else
-	{
-		return Negation(A);
-	}
+	return not A;
 }
 
 bool TruthValues::And(bool A, bool B)
 {
-	if (A == true and B == true)
-	{
-		return true;
-	}
-	else if (A == false or B == false)
-	{
-		return false;
-	}
-	else
-	{
-		return And(A, B);
-	}
+	return A and B;
 }
 
 bool TruthValues::Or(bool A, bool B)
 {
-	if (A == true or B == true)
-	{
-		return true;
-	}
-	else if (A == false and B == false)
-	{
-		return false;
-	}
-	else
-	{
-		return Or(A, B);
-	}
+	return A or B;
 }
 
 bool TruthValues::Implication(bool A, bool B)
 {
-	if (A == false or B == true)
-	{
-		return true;
-	}
-	else if (A == true and B == false)
-	{
-		return false;
-	}
-	else
-	{
-		return Implication(A, B);
-	}
-}
-
-bool TruthValues::BiImplication(bool A, bool B)
-{
-	if ((A == true and B == true) or (A == false and B == false))
-	{
-		return true;
-	}
-	else if ((A == true and B == false) or (A == false and B == true))
-	{
-		return false;
-	}
-	else
-	{
-		return BiImplication(A, B);
-	}
+	return not A or B;
 }
 
 /*
@@ -109,28 +47,17 @@ bool TruthValues::BiImplication(bool A, bool B)
 
 bool TruthValues::InvOfNegation(bool A)
 {
-	if (A == false)
-	{
-		return true;
-	}
-	else if (A == true)
-	{
-		return false;
-	}
-	else
-	{
-		return InvOfNegation(A);
-	}
+	return not A;
 }
 
 values TruthValues::InvOfAnd(bool A)
 {
-	if (A == true)
+	if(A == true)
 	{
 		values result = {std::make_tuple(Truthmap['A'], Truthmap['A'])};
 		return result;
 	}
-	else if (A == false)
+	else if(A == false)
 	{
 		values result = {std::make_tuple(Truthmap['A'], Truthmap['B']), std::make_tuple(Truthmap['B'], Truthmap['A'])};
 		return result;
