@@ -1,10 +1,14 @@
 #include "../includes/wumpusWorld.hpp"
+#include "../includes/proposition.hpp"
+#include "../includes/toPostfix.hpp"
+#include "../includes/helper.hpp"
 #include <iostream>
 #include <iomanip>
 #include <chrono>
 #include <string>
 #include <tuple>
 #include <cstdlib>
+#include <stack>
 
 
 using std::cout;
@@ -12,6 +16,7 @@ using std::cin;
 using std::endl;
 using std::string;
 using std::tuple;
+using std::stack;
 
 const static int adjacentRooms[24][2] = {
 	{1, 5}, {1, 2}, {2, 3}, {2, 6}, {3, 7}, {3, 4},
@@ -20,9 +25,10 @@ const static int adjacentRooms[24][2] = {
 	{11, 12}, {11, 15}, {12, 16}, {13, 14}, {14, 15}, {15, 16}
 };
 
+// creating an environment to the an agent
 void Rules::buildEnvironment()
 {
-	 // initializing empty room except room(3,)
+	 // initializing empty room except room(3,0) and adjacent room to an agent
 	for (int i = 0; i < 4; i++)
 	{
 		
@@ -33,13 +39,9 @@ void Rules::buildEnvironment()
 				continue; // skip to the next row and col since i =3 and j =0 occupied by an Agent
 			}
 
-			rooms[i][j] = 0;	
+			rooms[i][j] = 0; // empty room
+			adjacentRoom[i] = 0;	// empty adjacent room to an agent
 		}
-	}
-
-	for (int i = 0; i < 4; ++i)
-	{
-		adjacentRoom[i] = 0;
 	}
 
 	// before pits, gold, agent, wumpus are intialized
@@ -54,14 +56,20 @@ void Rules::buildEnvironment()
 	{
 		int countNoPits = 0;
 		RowAndColOfPits:
-			num = this->generateRandomNo(1, 16);
 			row = this->generateRandomNo(0, 3);
 			col = this->generateRandomNo(0, 3);
+
+		// make sure that room(2, 0) and room(3, 1) free from danger
+		if ((row == 2 and col == 0) or (row == 3 and col == 1))
+		{
+			goto RowAndColOfPits;
+		}
+
 		while(countNoPits < 3)
 		{
 			if (rooms[row][col] == 0)
 			{
-				rooms[row][col] = num;
+				rooms[row][col] = 4;
 				countNoPits+=1;
 				cout << countNoPits << ":" << rooms[row][col] <<endl;
 			}
@@ -83,14 +91,20 @@ void Rules::buildEnvironment()
 	//add gold
 	cout << "Adding a Gold..." << endl;
 	RowAndColOfGold:
-		num = this->generateRandomNo(1, 16);
 		row = this->generateRandomNo(0, 3);
 		col = this->generateRandomNo(0, 3);
+
+	// make sure that room(2, 0) and room(3, 1) free from danger
+	if ((row == 2 and col == 0) or (row == 3 and col == 1))
+		{
+			goto RowAndColOfGold;
+		}
+
 	while(!gold)
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = num;
+			rooms[row][col] = 2;
 			cout <<"Gold is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -104,15 +118,20 @@ void Rules::buildEnvironment()
 	// add wumpus
 	cout << "Adding a wumpus..." << endl;
 	RowAndColOfWumpus:
-		num = this->generateRandomNo(1, 16);
 		row = this->generateRandomNo(0, 3);
 		col = this->generateRandomNo(0, 3);
+
+	// make sure that room(2, 0) and room(3, 1) free from danger
+	if ((row == 2 and col == 0) or (row == 3 and col == 1))
+		{
+			goto RowAndColOfWumpus;
+		}
 
 	while(!wumpus)
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = num;
+			rooms[row][col] = 1;
 			cout <<"Wumpus is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -124,6 +143,7 @@ void Rules::buildEnvironment()
 	}
 }
 
+// finding an adjacent rooms to the current agent room
 int* Rules::findAdjacentRooms(int CurrentAgent)
 {
 	for (int i = 0; i < 24; i++)
@@ -150,6 +170,43 @@ int* Rules::findAdjacentRooms(int CurrentAgent)
 
 	return adjacentRoom;
 }
+
+// definition of models
+bool Rules::models()
+{
+	// todo
+}
+
+// definition of rule match for the an agent to make action
+void Rules::ruleMatch()
+{
+	bool shoot = false
+	okrooms.push(13);
+	okrooms.push(9);
+	okrooms.push(14);
+	int preAgentPosition = rooms[3][0];
+	int* roomsAjacentToAgent = findAdjacentRooms(preAgentPosition);
+	for (int i = 0; i < 4; i++)
+	{
+		if (*(roomsAjacentToAgent + i) == 0)
+		{
+			continue;
+		}
+
+		for (int j = 0; j < 4; j++)
+		{
+			for (int m = 0; m < 4; m++)
+			{
+				if (rooms[j][m] == *(roomsAjacentToAgent + i) and rooms[j][m] == 'W')
+				{
+					return !shoot;
+				}
+			}
+		}
+
+	}
+}
+
 bool Rules::isAdjacentRooms(int roomA, int roomB)
 {
 	for (int i = 0; i < 2; ++i)
@@ -165,55 +222,8 @@ bool Rules::isAdjacentRooms(int roomA, int roomB)
 	}
 };
 
-void Rules::movement()
-{
-	for (int i = 0; i < 1; i++)
-	{
-		for (int j = 0; i < 11; j++)
-		{
-			if (i == 0 and j == 0)
-			{	
-				Okrooms[i][j] = rooms[3][0];
-				continue;
-			}
-			Okrooms[i][j] = 0;
-			if (j == 10)
-			{
-				break;
-			}
-		}
-	}
-
-	for (int i = 0; i < 24; i++)
-	{
-		for (int j = 0; j < 2; j++)
-		{
-			cout << adjacentRooms[i][j] << endl;
-		}
-	}
-}
-
 int Rules::generateRandomNo(int lower, int upper)
 {
 	srand(time(0));
 	return (rand() % (upper - lower + 1)) + lower;
-}
-
-int main()
-{
-	Rules rule;
-	rule.buildEnvironment();
-	int* ad = rule.findAdjacentRooms(13);
-	for (int i = 0; i < 4; i++)
-	{
-		if (*(ad + i) == 0)
-		{
-			continue;
-		}
-
-		cout << *(ad + i) << endl;
-	}
-	bool val = rule.isAdjacentRooms(13, 9);
-	// rule.movement();
-	return 0;
 }

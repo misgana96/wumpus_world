@@ -5,8 +5,11 @@
 #include <stack>
 #include "helper.hpp"
 #include "proposition.hpp"
-using namespace TruthValues
-using std::stack
+
+
+using namespace TruthValues;
+
+using std::stack;
 private:
     stack<TruthValues> tmp;
 public:
