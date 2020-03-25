@@ -4,10 +4,7 @@
 #include <tuple>
 #include <map>
 
-using std::cout;
-using std::endl;
-using std::tuple;
-using std::map;
+using namespace std;
 
 
 std::map<char, char> Truthmap = 

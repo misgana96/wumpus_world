@@ -6,16 +6,12 @@
 #include <stack>
 
 
-using std::cout;
-using std::endl;
-using std::string;
-using std::array;
-using std::tuple;
-using std::stack;
+using namespace std;
 
 class Rules{
 private:
 	int rooms[4][4];
+	int room_id= 0;
 	stack<int>okrooms;
 	int row, col, num, size = 0;
 	int adjacentRoom[4];
@@ -28,6 +24,7 @@ public:
 	void movement();
 	bool isAdjacentRooms(int roomA, int roomB);
 	int* findAdjacentRooms(int CurrentAgent);
+	int getAgentCurrentPositionById(int room_id);
 	void ruleMatch();
 	bool models();
 	int generateRandomNo(int lower, int upper);

@@ -1,7 +1,3 @@
-#include "../includes/wumpusWorld.hpp"
-#include "../includes/proposition.hpp"
-#include "../includes/toPostfix.hpp"
-#include "../includes/helper.hpp"
 #include <iostream>
 #include <iomanip>
 #include <chrono>
@@ -9,6 +5,10 @@
 #include <tuple>
 #include <cstdlib>
 #include <stack>
+#include "./wumpusWorld.hpp"
+#include "./proposition.hpp"
+#include "./toPostfix.hpp"
+#include "./helper.hpp"
 
 
 using namespace std;
@@ -20,6 +20,7 @@ const static int adjacentRooms[24][2] = {
 	{11, 12}, {11, 15}, {12, 16}, {13, 14}, {14, 15}, {15, 16}
 };
 
+// set room id for each room;
 // creating an environment to the an agent
 void Rules::buildEnvironment()
 {
@@ -164,6 +165,22 @@ int* Rules::findAdjacentRooms(int CurrentAgent)
 	}
 
 	return adjacentRoom;
+}
+
+
+// return anget coordinate 
+int Rules::getAgentCurrentPositionById(int room_id)
+{
+	for(int i =0; i<4; i++)
+	{
+		for(int j=0;j<4;j++)
+		{
+			if(rooms[i][j] == room_id)
+			{
+				return i , j;
+			}
+		}
+	}
 }
 
 // definition of models

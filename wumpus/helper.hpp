@@ -3,7 +3,7 @@
 #include <tuple>
 
 
-using std::tuple;
+using namespace std;
 
 struct values
 {
