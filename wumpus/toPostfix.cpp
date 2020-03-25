@@ -1,5 +1,7 @@
 #include "../include/toPostfix.hpp"
 #include "../include/proposition.hpp"
+
+
 int precedence(TruthValue A){
     if(A == TruthValue::And){
         return 3;

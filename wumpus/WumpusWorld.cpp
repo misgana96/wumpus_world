@@ -11,12 +11,7 @@
 #include <stack>
 
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
-using std::tuple;
-using std::stack;
+using namespace std;
 
 const static int adjacentRooms[24][2] = {
 	{1, 5}, {1, 2}, {2, 3}, {2, 6}, {3, 7}, {3, 4},
