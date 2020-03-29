@@ -1,22 +1,12 @@
-#include "../includes/wumpusWorld.hpp"
-#include "../includes/proposition.hpp"
-#include "../includes/toPostfix.hpp"
-#include "../includes/helper.hpp"
 #include <iostream>
 #include <iomanip>
-#include <chrono>
-#include <string>
-#include <tuple>
-#include <cstdlib>
-#include <stack>
+
+#include "coordinates.hpp"
+#include "wumpusworld.hpp"
 
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
-using std::tuple;
-using std::stack;
+
+using namespace std;
 
 const static int adjacentRooms[24][2] = {
 	{1, 5}, {1, 2}, {2, 3}, {2, 6}, {3, 7}, {3, 4},
@@ -25,8 +15,11 @@ const static int adjacentRooms[24][2] = {
 	{11, 12}, {11, 15}, {12, 16}, {13, 14}, {14, 15}, {15, 16}
 };
 
-// creating an environment to the an agent
-void Rules::buildEnvironment()
+/*	
+	set room id for each room and
+	creat an environment to the an agent
+*/
+void World::buildEnvironment()
 {
 	 // initializing empty room except room(3,0) and adjacent room to an agent
 	for (int i = 0; i < 4; i++)
@@ -69,7 +62,8 @@ void Rules::buildEnvironment()
 		{
 			if (rooms[row][col] == 0)
 			{
-				rooms[row][col] = 4;
+				piCoordinates *pitsPosition = new Coordinates(row, col);
+				rooms[row][col] = 'P';
 				countNoPits+=1;
 				cout << countNoPits << ":" << rooms[row][col] <<endl;
 			}
@@ -84,7 +78,8 @@ void Rules::buildEnvironment()
 
 	// add agent
 	cout << "Adding an Agent..." << endl;
-	rooms[3][0] = 13;
+	Coordinates *agentPosition = new Coordinates(row, col);
+	rooms[3][0] = 'A';
 	cout << "An agen is: " << rooms[3][0] << endl;
 	agent = true;
 
@@ -104,7 +99,8 @@ void Rules::buildEnvironment()
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = 2;
+			Coordinates *goldPosition = new Coordinates(row, col);
+			rooms[row][col] = 'G';
 			cout <<"Gold is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -131,7 +127,8 @@ void Rules::buildEnvironment()
 	{
 		if (rooms[row][col] == 0)
 		{
-			rooms[row][col] = 1;
+			Coordinates *wumpusPosition = new Coordinates(row, col);
+			rooms[row][col] = 'W';
 			cout <<"Wumpus is: " << rooms[row][col] <<endl;
 		}
 		else
@@ -143,8 +140,23 @@ void Rules::buildEnvironment()
 	}
 }
 
+bool World::goldtaken()
+{
+	return isGoldTaken;
+}
+
+bool World::wumpusDead()
+{
+	return isWumpusDead;
+}
+
+Coordinates World::getGoldPosition()
+{
+	return *this->goldPosition;
+}
+
 // finding an adjacent rooms to the current agent room
-int* Rules::findAdjacentRooms(int CurrentAgent)
+int* World::findAdjacentRooms(int CurrentAgent)
 {
 	for (int i = 0; i < 24; i++)
 	{
@@ -171,16 +183,32 @@ int* Rules::findAdjacentRooms(int CurrentAgent)
 	return adjacentRoom;
 }
 
+
+// return anget coordinate 
+int World::getAgentCurrentPositionById(int room_id)
+{
+	for(int i =0; i<4; i++)
+	{
+		for(int j=0;j<4;j++)
+		{
+			if(rooms[i][j] == room_id)
+			{
+				return i , j;
+			}
+		}
+	}
+}
+
 // definition of models
-bool Rules::models()
+bool World::models()
 {
 	// todo
 }
 
 // definition of rule match for the an agent to make action
-void Rules::ruleMatch()
+void World::ruleMatch()
 {
-	bool shoot = false
+	bool shoot = false;
 	okrooms.push(13);
 	okrooms.push(9);
 	okrooms.push(14);
@@ -199,7 +227,7 @@ void Rules::ruleMatch()
 			{
 				if (rooms[j][m] == *(roomsAjacentToAgent + i) and rooms[j][m] == 'W')
 				{
-					return !shoot;
+					cout << "shoot" << endl;
 				}
 			}
 		}
@@ -207,7 +235,7 @@ void Rules::ruleMatch()
 	}
 }
 
-bool Rules::isAdjacentRooms(int roomA, int roomB)
+bool World::checkIfAdjacent(int roomA, int roomB)
 {
 	for (int i = 0; i < 2; ++i)
 	{
@@ -222,7 +250,7 @@ bool Rules::isAdjacentRooms(int roomA, int roomB)
 	}
 };
 
-int Rules::generateRandomNo(int lower, int upper)
+int World::generateRandomNo(int lower, int upper)
 {
 	srand(time(0));
 	return (rand() % (upper - lower + 1)) + lower;
