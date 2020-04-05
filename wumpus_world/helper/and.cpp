@@ -1,7 +1,7 @@
 /** program_and.cpp ---
 *
 *
-* Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
+* Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
 * Copyright (c) 2020 misgana96
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the  MIT License as
