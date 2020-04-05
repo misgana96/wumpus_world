@@ -21,10 +21,10 @@ Wumpus world is a knowledge based AI game. In this game  an agent behave intelli
 *  each room is represented with coorsinates of points represented with row and col
 * row and col counting started from up and goes to down so that zero is min border and three is max border
 
+### Perception
 
-
-
-
+ An agent percept signals from adjacent rooms. If there is a wumpus adjacent to it then an agent percet stench and if there is a pit then it percepts a breeze and if their is a gold then the gold will glitter.
+ 
 ### How to setup
 ``` 
 mkdir build
@@ -44,6 +44,3 @@ cmake --build .
 				
 				
 				
-### Perception
-
- An agent percept signals from adjacent rooms. If there is a wumpus adjacent to it then an agent percet stench and if there is a pit then it percepts a breeze and if their is a gold then the gold will glitter.
