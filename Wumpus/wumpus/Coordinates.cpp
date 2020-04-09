@@ -3,7 +3,7 @@
 #include "coordinates.hpp"
 
 
-/** program_and.cpp ---
+/** program_Coordinates.cpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>

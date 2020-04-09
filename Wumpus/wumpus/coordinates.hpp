@@ -4,7 +4,7 @@
 #include <string>
 
 
-/** program_coordinates.cpp ---
+/** program_coordinates.hpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
