@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # Add sub-directories
 add_subdirectory(Wumpus)
-#add_subdirectory(Test)
+add_subdirectory(Test)
