@@ -6,7 +6,7 @@ Wumpus world is a knowledge based AI game. In this game  an agent behave intelli
 
 ## wumpus world coordinates
 
-|   (0,0)       |    (0,1)      |     (0,2)    |      (0,4)    |
+|   (0,0)       |    (0,1)      |     (0,2)    |      (0,3)    |
 |  :------- | :-------: |  :------: |  :-------:|
 |       (1,0)   |    (1,1)      |     (1,2)      |       (1,3)    |
 |        (2,0)   |     (2,1)      |      (2,2)     |     (2,3)      |
@@ -25,7 +25,19 @@ Wumpus world is a knowledge based AI game. In this game  an agent behave intelli
 
  An agent percept signals from adjacent rooms. If there is a wumpus adjacent to it then an agent percet stench and if there is a pit then it percepts a breeze and if their is a gold then the gold will glitter.
 
-### How to setup
+### Installation
+In order to use or make changes to this repository, you need to meet and follow the following requirements
+
+### pre-requests
+* g++ compiler
+* git
+* An editor
+
+Once the above requirement are fulfilled, do the following
+
+```
+git clone https://github.com/misgana96/wumpus_world.git
+```
 ``` 
 mkdir build
 ```
@@ -39,3 +51,17 @@ cmake ../
 ```
 cmake --build .
 ```		
+### how to run test
+```
+cd build/Test/wummpus
+```
+```
+./unittest
+```
+### how to run the program
+```
+cd build /Wumpus/main
+```
+```
+./main
+```
