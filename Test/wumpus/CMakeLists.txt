@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 
 # add include directories
-include_directories( ../Wumpus)
+include_directories( ../../Wumpus/Wumpus)
 
 set(CXXTEST_CURRENT_SOURCE_DIR)
 find_package(CxxTest)
