@@ -56,7 +56,7 @@ cmake --build .
 cd build/Test/wummpus
 ```
 ```
-./unittest
+./wumpustest
 ```
 ### how to run the program
 ```
