@@ -9,9 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 SET(EXEC main)
 
 # add include directories
-include_directories(../wumpus)
+include_directories(../wumpus ../helper)
 
 # add executable files
 add_executable(${EXEC} main.cpp)
 
-target_link_libraries(${EXEC} header)
+target_link_libraries(${EXEC} wumpus helper)
