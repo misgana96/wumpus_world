@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 # add include directories
 include_directories(../wumpus)
 
-add_library(wumpus SHARED Coordinates.cpp)
+add_library(header SHARED 
+                  Coordinates.cpp
+                  WumpusWorld.cpp
+                  Percept.cpp
+                  )
 
 set_property(TARGET wumpus PROPERTY INTERFACE_POSITION_INDEPENDENT_CODE ON)
