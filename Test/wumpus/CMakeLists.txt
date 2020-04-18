@@ -16,10 +16,6 @@ if(CXXTEST_FOUND)
 
     CXXTEST_ADD_TEST(wumpustest wumpusWorld.cpp
                     ${CMAKE_CURRENT_SOURCE_DIR}/TestSuite.hpp)
-<<<<<<< HEAD
     target_link_libraries(wumpustest wumpus)
-=======
-    target_link_libraries(wumpustest header)
->>>>>>> test
 
 endif()
