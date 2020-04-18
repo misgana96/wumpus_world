@@ -53,7 +53,7 @@ class And
 public:
     TruthValue A, B;
     And();
-    And(TruthValue A, TruthValue);
+    And(TruthValue A, TruthValue B);
     bool getAnd(TruthValue A, TruthValue B);
     values invOfAnd(TruthValue A);
 
