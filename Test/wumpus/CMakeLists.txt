@@ -14,8 +14,8 @@ if(CXXTEST_FOUND)
     include_directories(/usr/include/)
     enable_testing()
 
-    CXXTEST_ADD_TEST(unittest wumpusWorld.cpp
+    CXXTEST_ADD_TEST(wumpustest wumpusWorld.cpp
                     ${CMAKE_CURRENT_SOURCE_DIR}/TestSuite.hpp)
-    target_link_libraries(unittest header)
+    target_link_libraries(wumpustest header)
 
 endif()
