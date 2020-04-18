@@ -1,11 +1,9 @@
-#include "types.hpp"
 #include <iostream>
 #include <iomanip>
-#include <cstddef>
-#include <string>
+#include "percept.hpp"
 
 
-/** program_coordinates.hpp ---
+/** program_Percept.cpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -27,25 +25,18 @@
 
 using namespace std;
 
-class Coordinates
+/**
+ * @param breeze true if there is pit in adjacent cell else  false
+ * @param stench true if there is wumpus in adjacent cell else false
+ * @param glitter true if there is gold in the cell else false
+ * @param bump true if an agent collide with the cell
+ * @param position it is position of an element
+ */
+Percept::Percept(bool breeze, bool stench, bool glitter, bool bump, Coordinates position)
 {
-private:
-    int row;
-    int col;
-
-public:
-    Directions direction;
-    Coordinates();
-    Coordinates(int row, int col, Directions direction);
-    Coordinates(int row, int col);
-    int getRow();
-    int getCol();
-    Directions getDirection();
-    Coordinates moveEast();
-    Coordinates moveWest();
-    Coordinates moveNorth();
-    Coordinates moveSouth();
-    Coordinates moveAhead();
-    Directions determineDirection(Coordinates end);
-    void printDirction();
+    this->breeze = breeze;
+    this->bump = bump;
+    this->glitter = glitter;
+    this->stench = stench;
+    this->position = position;
 };

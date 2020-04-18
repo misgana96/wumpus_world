@@ -1,11 +1,8 @@
-#include "types.hpp"
+#include "coordinates.hpp"
 #include <iostream>
 #include <iomanip>
-#include <cstddef>
-#include <string>
 
-
-/** program_coordinates.hpp ---
+/** program_percept.hpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -27,25 +24,15 @@
 
 using namespace std;
 
-class Coordinates
+class Percept
 {
 private:
-    int row;
-    int col;
+    bool stench;
+    bool breeze;
+    bool glitter;
+    bool bump;
+    Coordinates position;
 
 public:
-    Directions direction;
-    Coordinates();
-    Coordinates(int row, int col, Directions direction);
-    Coordinates(int row, int col);
-    int getRow();
-    int getCol();
-    Directions getDirection();
-    Coordinates moveEast();
-    Coordinates moveWest();
-    Coordinates moveNorth();
-    Coordinates moveSouth();
-    Coordinates moveAhead();
-    Directions determineDirection(Coordinates end);
-    void printDirction();
+    Percept(bool breeze, bool stench, bool glitter, bool bump, Coordinates position);
 };
