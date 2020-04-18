@@ -15,7 +15,12 @@ if(CXXTEST_FOUND)
     enable_testing()
 
     CXXTEST_ADD_TEST(helpertest testHelper.cpp
+<<<<<<< HEAD
                     ${CMAKE_CURRENT_SOURCE_DIR}/TestSuite.hpp)
+=======
+                    ${CMAKE_CURRENT_SOURCE_DIR}/TestAnd.hpp)
+                    
+>>>>>>> test
     target_link_libraries(helpertest helper)
 
 endif()
