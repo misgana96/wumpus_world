@@ -1,49 +1,15 @@
+#include "types.hpp"
 #include <iostream>
 #include <iomanip>
 #include "coordinates.hpp"
 
 
-/** program_and.cpp ---
-*
-*
-* Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
-* Copyright (c) 2020 misgana96
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the  MIT License as
-* published by the Free Software Foundation
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* MIT License for more details.
-*
-* You should have received a copy of the MIT License
-* along with this program; if not, write to:
-* Free Software Foundation, Inc.,
-* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-*/
-
 using namespace std;
-
 
 /**
  * default constractuor
  */
 Coordinates::Coordinates(){}
-
-/**
- * Copy constructor
- * @param point the reference for the constructor Coordinates
- */
-Coordinates::Coordinates(Coordinates& point)
-{
-    row = point.row;
-    col = point.col;
-    if(point.direction != 0)
-    {
-        direction = point.direction;
-    }
-}
 
 /**
  * a constructor with parameters
@@ -147,8 +113,8 @@ Coordinates Coordinates::moveAhead()
  */
 Directions Coordinates::determineDirection(Coordinates end)
 {
-    int startRow = 1;
-    int startCol = 2;
+    int startRow = 2;
+    int startCol = 1;
 
     int endRow = end.getRow();
     int endCol = end.getCol();

@@ -1,3 +1,4 @@
+#include "types.hpp"
 #include <iostream>
 #include <iomanip>
 #include <cstddef>
@@ -26,15 +27,6 @@
 
 using namespace std;
 
-enum Directions
-{
-    NORTH,
-    SOUTH,
-    WEST,
-    EAST,
-    NONE
-};
-
 class Coordinates
 {
 private:
@@ -44,7 +36,6 @@ private:
 public:
     Directions direction;
     Coordinates();
-    Coordinates(Coordinates &point);
     Coordinates(int row, int col, Directions direction);
     Coordinates(int row, int col);
     int getRow();
@@ -58,4 +49,3 @@ public:
     Directions determineDirection(Coordinates end);
     void printDirction();
 };
-
