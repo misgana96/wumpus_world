@@ -1,16 +1,23 @@
 #include <iostream>
 #include <iomanip>
-#include "coordinates.hpp"
+#include "and.hpp"
+#include "or.hpp"
+#include "wumpusworld.hpp"
 
 
+using namespace Wumpus;
+using namespace helper;
 using namespace std;
 
 int main()
 {
-   Coordinates coordinates(2, 1, SOUTH)
-   coordinates.getCol();
-   coordinates.getRow();
-   coordinates.getDirection();
-   
-   return 0;
-}
+	Coordinates coordinate(2, 1, SOUTH);
+	World wr;
+	wr.buildEnvironment();
+	Coordinates pits =  wr.getPitsPosition(0);
+	pits.printDirction();
+	coordinate.getCol();
+	coordinate.getRow();
+	coordinate.getDirection();
+	return 0;
+};
