@@ -18,7 +18,7 @@ Wumpus world is a knowledge based AI game. In this game  an agent behave intelli
 
 ### Assumptions
 
-*  each room is represented with coorsinates of points represented with row and col
+*  each room is represented with coordinates of points represented with row and col
 * row and col counting started from up and goes to down so that zero is min border and three is max border
 
 ### Perception
@@ -65,3 +65,5 @@ cd build /Wumpus/main
 ```
 ./main
 ```
+### to do
+* implemement main for test to run all test from main
