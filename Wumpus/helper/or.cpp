@@ -1,4 +1,4 @@
-/** program_and.cpp ---
+/** program_or.cpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -20,36 +20,50 @@
 
 #include <iostream>
 #include <iomanip>
-#include "and.hpp"
+#include <tuple>
+#include "or.hpp"
 #include "types.hpp"
 
 
 using namespace Wumpus;
 using namespace helper;
 
-And::And(){}
 
-And::And(bool A, bool B)
+// /**
+//  * definition of default and parameterize constructor
+//  */
+Or::Or(){};
+
+Or::Or(bool A, bool B)
 {
     this->A = A;
     this->B = B;
 }
 
-bool And::getAnd(bool A,bool B)
+/**
+ * @param A truth value which is eitherr true or false
+ * @param B truth value which is either true or false
+ * @return true is A or B is true else false
+ */
+bool Or::getOr(bool A,bool B)
 {
-    return A and B;
+    return A or B;
 }
 
-valuesOfAnd And::invOfAnd(bool A)
+/** 
+ * @param A which is either true or false
+ * @return {true, falde} or {false, true} if invofOr is true else {false, false}
+ */
+valuesOfOr Or::invOfOr(bool A)
 {
     if (A)
 	{
-		valuesOfAnd result = {make_tuple(TRUE, TRUE)};
+		valuesOfOr result = {make_tuple(TRUE, FALSE), make_tuple(FALSE, TRUE)};
 		return result;
 	}
 	else
 	{
-		valuesOfAnd result = {make_tuple(TRUE, FALSE), make_tuple(FALSE, TRUE)};
+		valuesOfOr result = {make_tuple(FALSE, FALSE)};
 		return result;
 	}
 

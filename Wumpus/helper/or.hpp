@@ -1,4 +1,4 @@
-/** program_and.hpp ---
+/** program_or.hpp ---
 *
 *
 * Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,19 +17,19 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-#ifndef HELPER_AND_HPP_INCLUDED
-#define HELPER_AND_HPP_INCLUDED
+#ifndef HELPER_OR_HPP_INCLUDED
+#define HELPER_OR_HPP_INCLUDED
 
 #include <iostream>
 #include <iomanip>
-#include <cstddef>
 #include <tuple>
+
 
 using namespace std;
 /**
-* class and -- Implements logical and, and its invers functions
-* Given two boolian truth values And(true,False) will return false,And(False,False) will return false,
-And(False,True) will return false, and And(true,true) will return true
+* class or -- Implements logical or, and its invers functions
+* Given two boolian truth values or(true,False) will return true,or(False,False) will return false,
+  or(False,True) will return true, and or(true,true) will return true
 * for the inverse given a truth value invOfAnd(true) will return T,T ...
 */
 
@@ -38,20 +38,20 @@ namespace Wumpus
 namespace helper
 {
 
-struct valuesOfAnd
+struct valuesOfOr
 {
     tuple<int, int>value1;
     tuple<int, int>value2;
 };
 
-class And
+class Or
 {
 public:
     bool A, B;
-    And();
-    And(bool A, bool B);
-    bool getAnd(bool A, bool B);
-    valuesOfAnd invOfAnd(bool A);
+    Or();
+    Or(bool A, bool B);
+    bool getOr(bool A, bool B);
+    valuesOfOr invOfOr(bool A);
 
     };
 }
