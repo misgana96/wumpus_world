@@ -10,6 +10,7 @@ include_directories(../helper)
 add_library(helper SHARED 
                   and.cpp
                   or.cpp
+                  not.cpp
                   implication.cpp
                   )
 
