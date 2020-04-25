@@ -43,7 +43,7 @@ bool Implication::implication(bool A,bool B)
  */
 valuesOfImp Implication::invOfImplication(bool A)
 {
-    if (A)
+   if (A)
 	{
 		valuesOfImp result = {std::make_tuple(FALSE, TRUE)};
 		return result;
