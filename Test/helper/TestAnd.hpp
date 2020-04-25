@@ -1,8 +1,11 @@
 #include <cxxtest/TestSuite.h>
 #include <iostream>
 #include <iomanip>
+#include <tuple>
 #include "and.hpp"
 #include "or.hpp"
+#include "not.hpp"
+#include "implication.hpp"
 
 
 using namespace Wumpus;
@@ -63,9 +66,48 @@ public:
     void test_invOfOr()
     {
         valuesOfOr value = TestOr().invOfOr(false);
-        // TS_ASSERT_EQUALS(get<0>(value.value1), TRUE);
-        // TS_ASSERT_EQUALS(get<1>(value.value1), TRUE);
-        // TS_ASSERT_EQUALS(get<0>(value.value2), TRUE);
-        // TS_ASSERT_EQUALS(get<1>(value.value2), TRUE);
+    }
+};
+
+class notSuite: public CxxTest::TestSuite
+{
+    Not negation;
+public:
+    /**
+     * @param A which is boolean either true or false
+     * @return not A which is true if A is false or false if A is true
+     */
+    void test_getNot()
+    {
+        bool val = negation.getNot(false);
+        TS_ASSERT_EQUALS(val, true);
+    }
+
+    /**
+     *  @param A which is boolean either true or false
+     * @return not A which is true if A is false or false if A is true
+     */
+    void test_invOfNot()
+    {
+        bool inv = negation.invOfNot(true);
+        TS_ASSERT_EQUALS(inv, false);
+    } 
+};
+
+class ImpSuite: public CxxTest::TestSuite
+{
+    Implication Imp;
+public:
+    void test_Implication()
+    {
+        bool imp = Imp.implication(true, false);
+        TS_ASSERT_EQUALS(imp, false);
+    }
+
+    void test_invOfImplication()
+    {
+        valuesOfImp  impVal = Imp.invOfImplication(false);
+        cout << get<0>(impVal.value1) << endl;
+        cout << get<1>(impVal.value1) << endl;
     }
 };
