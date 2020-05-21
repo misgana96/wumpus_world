@@ -53,7 +53,7 @@ cmake --build .
 ```		
 ### how to run test
 ```
-cd build/Test/wummpus
+cd build/Test/wumpus
 ```
 ```
 ./wumpustest
