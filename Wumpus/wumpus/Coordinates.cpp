@@ -1,4 +1,3 @@
-#include "types.hpp"
 #include <iostream>
 #include <iomanip>
 #include "coordinates.hpp"

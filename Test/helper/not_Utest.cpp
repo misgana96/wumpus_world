@@ -1,6 +1,6 @@
-#include "../../wumpus_world/helper/not.hpp"
+#include "not.hpp"
 using namespace std;
-using namespace wumpus_world::helper;
+using namespace Wumpus::helper;
 int main(){
     Negation test;
 

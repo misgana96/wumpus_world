@@ -1,7 +1,7 @@
 /** program_and.hpp ---
 *
 *
-* Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
+* Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
 * Copyright (c) 2020 misgana96
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the  MIT License as
@@ -20,38 +20,29 @@
 #ifndef HELPER_AND_HPP_INCLUDED
 #define HELPER_AND_HPP_INCLUDED
 
+
 #include <iostream>
-#include <iomanip>
-#include <cstddef>
 #include <tuple>
 
-using namespace std;
-/**
-* class and -- Implements logical and, and its invers functions
-* Given two boolian truth values And(true,False) will return false,And(False,False) will return false,
+/*
+*class and -- Implements logical and, and its invers functions
+*Given two boolian truth values And(true,False) will return false,And(False,False) will return false,
 And(False,True) will return false, and And(true,true) will return true
-* for the inverse given a truth value invOfAnd(true) will return T,T ...
+*for the inverse given a truth value invOfAnd(true) will return T,T ...
 */
-
-namespace Wumpus 
+namespace Wumpus
 {
 namespace helper
 {
+using namespace std;
+class L_and{
 
-struct valuesOfAnd
-{
-    tuple<int, int>value1;
-    tuple<int, int>value2;
-};
+private:
+    bool A,B,TValue;
 
-class And
-{
 public:
-    bool A, B;
-    And();
-    And(bool A, bool B);
-    bool getAnd(bool A, bool B);
-    valuesOfAnd invOfAnd(bool A);
+    bool And(bool A,bool B); // Logical and
+    tuple<bool, int , bool> invOfAnd(bool TValue); // Inverse of Logical and Returns possible truth values.
 
     };
 }

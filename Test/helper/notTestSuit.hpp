@@ -1,5 +1,5 @@
 //notTestSuit.hpp
-#include "../../wumpus_world/helper/not.hpp"
+#include "not.hpp"
 #include <cxxtest/TestSuite.h>
 
 class notTestSuit : publicCxxTest::TestSuit{

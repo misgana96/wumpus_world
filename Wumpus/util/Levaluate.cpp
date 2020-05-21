@@ -1,4 +1,4 @@
-/** program_bi_implication.cpp ---
+/** program_Levaluate.cpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,20 +17,17 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-
-#include "bi_implication.hpp"
-using namespace wumpus_world;
-using namespace helper;
-
-
-bool bi_implication::Bi_Implication(bool A,bool B){
-    if(A != true && A!= false && B != true && B!= false){
-        return Bi_Implication(A,B);
-        }
-    else
-        return A == B;
-    }
-
-tuple<bool, int , bool> bi_implication::invOfBiImplication(bool TValue){
-    return (TValue == true ? make_tuple(true,0,false ) : make_tuple(true,1,false));
+#include "Levaluate.hpp"
+using namespace Wumpus;
+using namespace util;
+using namespace std;
+bool Levaluate::eval(string proposit){
+    int pos = proposit.find_first_of(',');
+    string propos = proposit.substr(0,pos);
+    string tvalues = proposit.substr(pos + 1);
+    L_proposition p;
+    forwardL_parser f;
+    vector<cell> prop = p.L_proposition::propositiont(propos,tvalues);
+    bool parsed = f.fParser(prop);
+    return parsed;
     }

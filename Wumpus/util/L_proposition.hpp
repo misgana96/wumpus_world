@@ -25,8 +25,10 @@
 #include <string>
 #include <boost/variant.hpp>
 
-namespace wumpus_world{
-namespace util{
+namespace Wumpus
+{
+namespace util
+{
 
 /*
 *class L_proposition -- Defines logical statment;
@@ -40,9 +42,8 @@ static cell Lnot="not";
 static cell Limp="imp";
 static cell Lbimp="bimp";
 
-class L_proposition{
-
-
+class L_proposition
+{
 
 public :
 

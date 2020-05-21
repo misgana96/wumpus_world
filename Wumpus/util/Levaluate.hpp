@@ -1,4 +1,4 @@
-/** program_forwardL_parser.hpp ---
+/** program_Levaluate.hpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,24 +17,28 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-#ifndef FORWARDL_PARSER_HPP_INCLUDED
-#define FORWARDL_PARSER_HPP_INCLUDED
+#ifndef EVALUATE_HPP_INCLUDED
+#define EVALUATE_HPP_INCLUDED
 
+#include <iostream>
+#include <string>
 #include "L_proposition.hpp"
-#include "../helper/not.hpp"
-#include "../helper/and.hpp"
-#include "../helper/or.hpp"
-#include "../helper/implication.hpp"
-#include "../helper/bi_implication.hpp"
-#include <stack>
-namespace wumpus_world{
-namespace util{
+#include "forwardL_parser.hpp"
 
-class forwardL_parser{
+namespace Wumpus
+{
+namespace util
+{
+using namespace std;
+class Levaluate
+{
 
-public:
-    bool fParser(vector<cell> propos);
-};
+    public :
+        bool eval(string propo);
+
+    };
 }
 }
-#endif // FORWARDL_PARSER_HPP_INCLUDED
+
+
+#endif // EVALUATE_HPP_INCLUDED

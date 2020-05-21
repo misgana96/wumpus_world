@@ -18,7 +18,7 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 #include "reverseL_parser.hpp"
-using namespace wumpus_world;
+using namespace Wumpus;
 using namespace util;
 using namespace helper;
 using namespace std;
@@ -29,8 +29,6 @@ L_or ro;
 implication rimp;
 bi_implication rbimp;
 bool rParser(vector<cell> propos, bool truthV,map<string,bool> &truthMap,stk<vectro<cell> reverse_iterator rit> &stkrit,stk<vectro<vector<cell>> iterator premit> &stkpremit,vectro<vector<cell>> iterator &premit){
-stack<bool> stk;
-stack<stack<bool>> stkStk;
 stsStk.push(stk);
 
 struct cellVisitor:public boost::static_visitor<statment>{

@@ -1,4 +1,4 @@
-/** program_or.cpp ---
+/** program_bi_implication.cpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -18,20 +18,19 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include "or.hpp"
-using namespace wumpus_world;
+#include "bi_implication.hpp"
+using namespace Wumpus;
 using namespace helper;
 
-bool L_or::Or(bool A,bool B){
+
+bool bi_implication::Bi_Implication(bool A,bool B){
     if(A != true && A!= false && B != true && B!= false){
-        return Or(A,B);
+        return Bi_Implication(A,B);
         }
     else
-        return A||B;
+        return A == B;
     }
 
-tuple<bool, int , bool> L_or::invOfOr(bool TValue){
-    return (TValue == true ? make_tuple(true,0,true ) : make_tuple(false,1,false));
-
+tuple<bool, int , bool> bi_implication::invOfBiImplication(bool TValue){
+    return (TValue == true ? make_tuple(true,0,false ) : make_tuple(true,1,false));
     }
-

@@ -1,5 +1,5 @@
-#include "../../wumpus_world/helper/or.hpp"
-using namespace wumpus_world::helper;
+#include "or.hpp"
+using namespace Wumpus::helper;
 using namespace std;
 int main(){
 

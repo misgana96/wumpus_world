@@ -1,4 +1,4 @@
-/** program_and.cpp ---
+/** program_statment.cpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,20 +17,31 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-
-#include "and.hpp"
-using namespace wumpus_world;
-using namespace helper;
-
-bool L_and::And(bool A,bool B){
-    if(A != true && A!= false && B != true && B!= false){
-        return And(A,B);
+#include "statment.hpp"
+using namespace Wumpus;
+using namespace util;
+    statment::statment(string statmt){
+        Statment = statmt;
         }
-    else
-        return A&&B;
-    }
-tuple<bool, int , bool> L_and::invOfAnd(bool TValue){
+    void statment::setTruthValue(bool TValue){
+       truthValue = TValue;
+        }
+    bool statment::getTruthValue(){
+        return truthValue;
+        }
+     string statment::getName(){
+         return Statment;
+         }
 
-    return (TValue == true ? make_tuple(true,1,true ) : make_tuple(false,0,false));
+  bool statment::operator== (const statment& rhs) const
+    {
 
+        return (statment::Statment == rhs.Statment);
     }
+
+   /* ostream& statment::operator<<(ostream& os,const statment& statm)
+    {
+        os <<statm.statment::Statment;
+        return os;
+        }
+*/

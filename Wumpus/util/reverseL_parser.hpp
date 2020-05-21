@@ -1,4 +1,4 @@
-/** program_statment.hpp ---
+/** program_reverseL_parser.hpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,30 +17,36 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
+#ifndef REVERSEL_PARSER_HPP_INCLUDED
+#define REVERSEL_PARSER_HPP_INCLUDED
 
+#include "L_proposition.hpp"
+#include "not.hpp"
+#include "and.hpp"
+#include "or.hpp"
+#include "implication.hpp"
+#include "bi_implication.hpp"
+#include <stack>
+#include <map>
 
-#ifndef STATMENT_HPP_INCLUDED
-#define STATMENT_HPP_INCLUDED
-#include <string>
-namespace wumpus_world{
-namespace util {
-using namespace std;
+namespace Wumpus
+{
+namespace util
+{
 
-class statment{
+class reverseL_parser
+{
 
     private:
-       string Statment;
-       bool truthValue;
-    public :
-
-        statment(string statmt);
-        void setTruthValue(bool TValue);
-        bool getTruthValue();
-        string getName();
-        bool operator== (const statment& rhs) const;
-        //friend ostream& operator<<(ostream& os,const statment& std);
+        bool valid;
+    public:
+        stack<bool> stk;
+        stack<stack<bool>> stkStk;
+        bool rParser(vector<cell> propos, bool truthVal,map<string,bool> &truthMap,stk<vector<cell> reverse_iterator rit> &stkrit,stk<vector<vector<cell>> iterator premit> &stkpremit);
+        void solveTuple(tuple<bool,int,bool> tup);
 
     };
 }
 }
-#endif // STATMENT_HPP_INCLUDED
+
+#endif // REVERSEL_PARSER_HPP_INCLUDED

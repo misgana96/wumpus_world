@@ -1,9 +1,9 @@
 //andTestSuit.hpp
 #include <cxxtest/TestSuite.h>
-#include "../../wumpus_world/helper/and.hpp"
+#include "../../Wumpus/helper/and.hpp"
 
 using namespace std;
-using namespace wumpus_world::helper;
+using namespace Wumpus::helper;
 
 class andTestSuite : public CxxTest::TestSuite{
     public:

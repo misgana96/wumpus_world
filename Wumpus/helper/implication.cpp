@@ -18,39 +18,17 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include <iostream>
-#include <iomanip>
 #include "implication.hpp"
-#include "types.hpp"
-
 using namespace Wumpus;
 using namespace helper;
 
-
-/**
- * @param A which is boolean either true or false
- * @param B which is boolean either true or false
- * @return true if it is true imp true, false imp true and false imp false else false
- */
-bool Implication::implication(bool A,bool B)
-{
-    return not A or B;
-}
-
-/**
- * @param A which is bool either true or false
- * @return valuesOfNot
- */
-valuesOfImp Implication::invOfImplication(bool A)
-{
-   if (A)
-	{
-		valuesOfImp result = {std::make_tuple(FALSE, TRUE)};
-		return result;
-	}
-	else
-	{
-		valuesOfImp result = {std::make_tuple(TRUE, FALSE)};
-		return result;
-	}
-}
+bool implication::Implication(bool A,bool B){
+    if(A != true && A!= false && B != true && B!= false){
+        return Implication(A,B);
+        }
+    else
+        return !A || B;
+    }
+tuple<bool, int , bool> implication::invOfImplication(bool TValue){
+    return (TValue == true ? make_tuple(false,0,true ) : make_tuple(true,1,false));
+    }

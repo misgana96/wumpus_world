@@ -1,7 +1,7 @@
 #include <cxxtest/TestSuite.h>
 #include <iostream>
 #include <iomanip>
-#include "wumpusworld.hpp"
+#include "../../Wumpus/wumpus/wumpusworld.hpp"
 
 using namespace std;
 

@@ -2,10 +2,10 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include "and.hpp"
-#include "or.hpp"
-#include "not.hpp"
-#include "implication.hpp"
+#include "../../Wumpus/helper/and.hpp"
+#include "../../Wumpus/helper/or.hpp"
+#include "../../Wumpus/helper/not.hpp"
+#include "../../Wumpus/helper/implication.hpp"
 
 
 using namespace Wumpus;
@@ -13,7 +13,7 @@ using namespace helper;
 
 using namespace std;
 
-class TestAnd: public And
+class TestAnd: public L_and
 {};
 
 class AndSuite : public CxxTest::TestSuite
@@ -26,8 +26,10 @@ public:
      */
     void test_getAnd()
     {
-        bool value = TestAnd().getAnd(true, false);
-        TS_ASSERT_EQUALS(false, value);
+        TS_ASSERT_EQUALS(TestAnd().And(true, false), 0);
+        TS_ASSERT_EQUALS(TestAnd().And(true, true), 1);
+        TS_ASSERT_EQUALS(TestAnd().And(false, false), 0);
+        TS_ASSERT_EQUALS(TestAnd().And(false, true), 0);
     }
 
     /**
@@ -36,13 +38,12 @@ public:
      */
     void test_invOfAnd()
     {
-        valuesOfAnd value = TestAnd().invOfAnd(true);
-        TS_ASSERT_EQUALS(get<0>(value.value1), true);
-        TS_ASSERT_EQUALS(get<1>(value.value1), true);
+        TS_ASSERT_EQUALS(TestAnd().invOfAnd(true), make_tuple(true,1,true));
+        // TS_ASSERT_EQUALS(TestAnd().invOfAnd(false), make_tuple(false,0,false));
     }
 };
 
-class TestOr: public Wumpus::helper::Or
+class TestOr: public Wumpus::helper::L_or
 {};
 
 class OrSuite : public CxxTest::TestSuite
@@ -55,8 +56,10 @@ public:
      */
     void test_getOr()
     {
-        bool value = TestOr().getOr(true, false);
-        //TS_ASSERT_EQUALS(TRUE, value);
+        TS_ASSERT_EQUALS(TestOr().Or(true, false), 1);
+        TS_ASSERT_EQUALS(TestOr().Or(false, false), 0);
+        TS_ASSERT_EQUALS(TestOr().Or(false, true), 1);
+        TS_ASSERT_EQUALS(TestOr().Or(true, true), 1);
     }
 
     /**
@@ -65,13 +68,15 @@ public:
      */
     void test_invOfOr()
     {
-        valuesOfOr value = TestOr().invOfOr(false);
+        TS_ASSERT_EQUALS(TestOr().invOfOr(false), make_tuple(false,1,false));
+        // TS_ASSERT_EQUALS(TestOr().invOfOr(true), make_tuple(true,1,false));
+        // TS_ASSERT_EQUALS(TestOr().invOfOr(true), make_tuple(false,1,true));
     }
 };
 
 class notSuite: public CxxTest::TestSuite
 {
-    Not negation;
+    Negation neg;
 public:
     /**
      * @param A which is boolean either true or false
@@ -79,8 +84,7 @@ public:
      */
     void test_getNot()
     {
-        bool val = negation.getNot(false);
-        TS_ASSERT_EQUALS(val, true);
+        TS_ASSERT_EQUALS(neg.Not(false), true);
     }
 
     /**
@@ -89,25 +93,26 @@ public:
      */
     void test_invOfNot()
     {
-        bool inv = negation.invOfNot(true);
-        TS_ASSERT_EQUALS(inv, false);
+        TS_ASSERT_EQUALS(neg.invOfNot(true), 0);
+        // TS_ASSERT_EQUALS(neg.invOfNot(false), 1);
     } 
 };
 
 class ImpSuite: public CxxTest::TestSuite
 {
-    Implication Imp;
+    implication Imp;
 public:
     void test_Implication()
     {
-        bool imp = Imp.implication(true, false);
-        TS_ASSERT_EQUALS(imp, false);
+        TS_ASSERT_EQUALS(Imp.Implication(true, false), false);
+        TS_ASSERT_EQUALS(Imp.Implication(false, false), true);
+        TS_ASSERT_EQUALS(Imp.Implication(true, true), true);
+        TS_ASSERT_EQUALS(Imp.Implication(false, false), true);
     }
 
     void test_invOfImplication()
     {
-        valuesOfImp  impVal = Imp.invOfImplication(false);
-        cout << get<0>(impVal.value1) << endl;
-        cout << get<1>(impVal.value1) << endl;
+        TS_ASSERT_EQUALS(Imp.invOfImplication(false), make_tuple(true,1,false));
+        TS_ASSERT_EQUALS(Imp.invOfImplication(true), make_tuple(false, 0, true));
     }
 };

@@ -20,7 +20,7 @@
 
 #include "L_proposition.hpp"
 
- using namespace wumpus_world;
+ using namespace Wumpus;
  using namespace util;
  using namespace std;
  typedef boost::variant<statment, string> cell;

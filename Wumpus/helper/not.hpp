@@ -22,8 +22,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include <tuple>
-#include <array>
+
 
 using namespace std;
 /*
@@ -35,13 +34,15 @@ namespace Wumpus
 {
 namespace helper
 {
-class Not{
+class Negation
+{
 
 private:
     bool A;
+    bool TruthValue;
 public:
-    bool getNot(bool A);
-    bool invOfNot(bool A);
+    bool Not(bool A); // Logical Not
+    bool invOfNot(bool A); // Inverse of Logical Not
 
     };
 }

@@ -1,8 +1,8 @@
 //notTestSuit.hpp
 #include <cxxtest/TestSuite.h>
-#include "../../wumpus_world/helper/not.hpp"
+#include "not.hpp"
 using namespace std;
-using namespace wumpus_world::helper;
+using namespace Wumpus::helper;
 class notTestSuite : public CxxTest::TestSuite{
     public:
     void testNot(){

@@ -18,7 +18,7 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 #include "forwardL_parser.hpp"
-using namespace wumpus_world;
+using namespace Wumpus;
 using namespace util;
 using namespace helper;
 using namespace std;

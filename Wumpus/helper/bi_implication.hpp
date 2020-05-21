@@ -1,4 +1,4 @@
-/** program_implication.hpp ---
+/** program_bi_implication.hpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,8 +17,9 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-#ifndef HELPER_IMPLICATION_HPP_INCLUDED
-#define HELPER_IMPLICATION_HPP_INCLUDED
+#ifndef HELPER_BI_IMPLICATION_HPP_INCLUDED
+#define HELPER_BI_IMPLICATION_HPP_INCLUDED
+
 
 #include <iostream>
 #include <iomanip>
@@ -27,26 +28,33 @@
 
 using namespace std;
 /*
-*class and -- Implements logical Implication, and its invers functions
-*Given two boolian truth values Implication(False,true) will return true,and Implication(true,false) will return false
-*for the inverse given a truth value invOfAnd(true) will return F,T ...
+*class and -- Implements logical Bi_Implication, and its invers functions
+*Given two boolian truth values Bi_Implication(False,False)/(true,true) will return true,
+and Implication(true,false)/(false,Ture) will return false
+*for the inverse given a truth value invOfAnd(true) will return F,F;T,T ...
 */
-namespace wumpus_world
+namespace Wumpus
 {
 namespace helper
 {
 
-class implication{
+struct values
+{
+	tuple<char, char>TruthValueOne;
+	tuple<char, char>TruthValueTwo;
+};
+class bi_implication{
 
 private:
     bool A,B,TValue;
+
 public:
-    bool Implication(bool A, bool B); // Logical Implication
-    tuple<bool,int,bool> invOfImplication(bool TValue); // Inverse of Logical Implication Returns possible truth values.
+    bool Bi_Implication(bool A, bool B); // Logical Bi_Implication
+    tuple<bool, int , bool> invOfBiImplication(bool TValue); // Inverse of Logical Bi_Implication Returns possible truth values.
 
     };
 }
 }
 
 
-#endif // HELPER_IMPLICATION_HPP_INCLUDED
+#endif // HELPER_BI_IMPLICATION_HPP_INCLUDED

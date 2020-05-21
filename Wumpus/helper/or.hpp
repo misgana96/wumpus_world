@@ -1,7 +1,7 @@
 /** program_or.hpp ---
 *
 *
-* Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
+* Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
 * Copyright (c) 2020 misgana96
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the  MIT License as
@@ -21,40 +21,31 @@
 #define HELPER_OR_HPP_INCLUDED
 
 #include <iostream>
-#include <iomanip>
 #include <tuple>
 
 
 using namespace std;
-/**
-* class or -- Implements logical or, and its invers functions
-* Given two boolian truth values or(true,False) will return true,or(False,False) will return false,
-  or(False,True) will return true, and or(true,true) will return true
-* for the inverse given a truth value invOfAnd(true) will return T,T ...
+/*
+*class and -- Implements logical or, and its invers functions
+*Given two boolian truth values Or(true,False) will return true,Or(False,False) will return False,
+Or(False,True) will return true, and Or(true,true) will return true
+*for the inverse given a truth value invOfOr(true) will return T,T;T,F;F,T ...
 */
-
-namespace Wumpus 
+namespace Wumpus
 {
 namespace helper
 {
 
-struct valuesOfOr
-{
-    tuple<int, int>value1;
-    tuple<int, int>value2;
-};
+class L_or{
 
-class Or
-{
+private:
+    bool A,B,TValue;
 public:
-    bool A, B;
-    Or();
-    Or(bool A, bool B);
-    bool getOr(bool A, bool B);
-    valuesOfOr invOfOr(bool A);
+    bool Or(bool A,bool B); // Logical or
+    tuple<bool, int , bool> invOfOr(bool TValue); // Inverse of Logical or Returns possible truth values.
 
     };
 }
 }
 
-#endif // HELPER_AND_HPP_INCLUDED
+#endif // HELPER_OR_HPP_INCLUDED

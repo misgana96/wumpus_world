@@ -22,20 +22,19 @@
 using namespace Wumpus;
 using namespace helper;
 
-/**
- * @param A which is bool value either true or false
- * @return not A which is true if A is false or false if A is true
- */
-bool Not::getNot(bool A)
-{
-    return not A;
-}
-
-/**
- * @param A which is bool value either true or false
- * @return not A which is true if A is false or false if A is true
- */
-bool Not::invOfNot(bool A)
+bool Negation::Not(bool A)
 {
 	return not A;
+}
+bool Negation::invOfNot(bool A)
+{
+    if (A)
+	{
+		TruthValue = false;
+	}
+	else
+	{
+		TruthValue = true;
+	}
+    return TruthValue;
 }

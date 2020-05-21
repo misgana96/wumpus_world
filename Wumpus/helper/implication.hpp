@@ -1,7 +1,7 @@
 /** program_implication.hpp ---
 *
 *
-* Authors: Misgana Yoseph<misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
+* Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
 * Copyright (c) 2020 misgana96
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the  MIT License as
@@ -23,7 +23,7 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include <array>
+
 
 using namespace std;
 /*
@@ -36,18 +36,13 @@ namespace Wumpus
 namespace helper
 {
 
-struct valuesOfImp
-{
-	tuple<int, int>value1;
-	tuple<int, int>value2;
-};
-class Implication{
+class implication{
 
 private:
-    bool A,B;
+    bool A,B,TValue;
 public:
-    bool implication(bool A, bool B);
-    valuesOfImp invOfImplication(bool TruthValue);
+    bool Implication(bool A, bool B); // Logical Implication
+    tuple<bool,int,bool> invOfImplication(bool TValue); // Inverse of Logical Implication Returns possible truth values.
 
     };
 }

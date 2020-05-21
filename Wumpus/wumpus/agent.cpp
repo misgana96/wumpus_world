@@ -1,7 +1,7 @@
-/** program_not.hpp ---
+/** program_and.cpp ---
 *
 *
-* Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
+* Authors: Misgana <misganayoseph@gmail.com> and Elias Tsegaw<tsegawelias@gmail.com>
 * Copyright (c) 2020 misgana96
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the  MIT License as
@@ -17,33 +17,12 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-#ifndef HELPER_NOT_HPP_INCLUDED
-#define HELPER_NOT_HPP_INCLUDED
 
 #include <iostream>
 #include <iomanip>
+#include "wumpusworld.hpp"
+#include "agent.hpp"
 
 
-using namespace std;
-/*
-*class not -- Implements logical negation and its invers functions
-*Given a boolian truth value Not(true) will return false and vice versa
-*for the inverse given a truth value invOfNot(true) will return F.
-*/
-namespace wumpus_world
-{
-namespace helper
-{
-class Negation{
-
-private:
-    bool A;
-    bool TruthValue;
-public:
-    bool Not(bool A); // Logical Not
-    bool invOfNot(bool A); // Inverse of Logical Not
-
-    };
-}
-}
-#endif // HELPER_NOT_HPP_INCLUDED
+using namespace Wumpus;
+using namespace wumpus;

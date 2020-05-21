@@ -1,4 +1,4 @@
-/** program_implication.cpp ---
+/** program_statment.hpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -18,17 +18,32 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include "implication.hpp"
-using namespace wumpus_world;
-using namespace helper;
 
-bool implication::Implication(bool A,bool B){
-    if(A != true && A!= false && B != true && B!= false){
-        return Implication(A,B);
-        }
-    else
-        return !A || B;
-    }
-tuple<bool, int , bool> implication::invOfImplication(bool TValue){
-    return (TValue == true ? make_tuple(false,0,true ) : make_tuple(true,1,false));
-    }
+#ifndef STATMENT_HPP_INCLUDED
+#define STATMENT_HPP_INCLUDED
+#include <string>
+namespace Wumpus
+{
+namespace util
+{
+using namespace std;
+
+class statment
+{
+
+    private:
+       string Statment;
+       bool truthValue;
+    public :
+
+        statment(string statmt);
+        void setTruthValue(bool TValue);
+        bool getTruthValue();
+        string getName();
+        bool operator== (const statment& rhs) const;
+        //friend ostream& operator<<(ostream& os,const statment& std);
+
+    };
+}
+}
+#endif // STATMENT_HPP_INCLUDED

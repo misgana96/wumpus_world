@@ -1,4 +1,4 @@
-/** program_statment.cpp ---
+/** program_forwardL_parser.hpp ---
 *
 *
 * Authors: Misgana <.com> and Elias Tsegaw<tsegawelias@gmail.com>
@@ -17,31 +17,27 @@
 * Free Software Foundation, Inc.,
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-#include "statment.hpp"
-using namespace wumpus_world;
-using namespace util;
-    statment::statment(string statmt){
-        Statment = statmt;
-        }
-    void statment::setTruthValue(bool TValue){
-       truthValue = TValue;
-        }
-    bool statment::getTruthValue(){
-        return truthValue;
-        }
-     string statment::getName(){
-         return Statment;
-         }
+#ifndef FORWARDL_PARSER_HPP_INCLUDED
+#define FORWARDL_PARSER_HPP_INCLUDED
 
-  bool statment::operator== (const statment& rhs) const
-    {
+#include "L_proposition.hpp"
+#include "not.hpp"
+#include "and.hpp"
+#include "or.hpp"
+#include "implication.hpp"
+#include "bi_implication.hpp"
+#include <stack>
+namespace Wumpus
+{
+namespace util
+{
 
-        return (statment::Statment == rhs.Statment);
-    }
+class forwardL_parser
+{
 
-   /* ostream& statment::operator<<(ostream& os,const statment& statm)
-    {
-        os <<statm.statment::Statment;
-        return os;
-        }
-*/
+public:
+    bool fParser(vector<cell> propos);
+};
+}
+}
+#endif // FORWARDL_PARSER_HPP_INCLUDED

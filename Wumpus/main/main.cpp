@@ -1,23 +1,24 @@
 #include <iostream>
 #include <iomanip>
+#include "not.hpp"
 #include "and.hpp"
 #include "or.hpp"
-#include "wumpusworld.hpp"
-
+#include "implication.hpp"
+#include "bi_implication.hpp"
+#include "Levaluate.hpp"
 
 using namespace Wumpus;
-using namespace helper;
+using namespace Wumpus::helper;
+using namespace Wumpus::util;
 using namespace std;
 
 int main()
 {
-	Coordinates coordinate(2, 1, SOUTH);
-	World wr;
-	wr.buildEnvironment();
-	Coordinates pits =  wr.getPitsPosition(0);
-	pits.printDirction();
-	coordinate.getCol();
-	coordinate.getRow();
-	coordinate.getDirection();
-	return 0;
+	Levaluate ev;
+    string propo1 = "p not ,F";
+    string propo = "p r k and and not ,T T T";
+    bool result = ev.eval(propo);
+    bool result1 = ev.eval(propo1);
+    cout << result << " " << result1<<endl;
+    return 0;
 };
