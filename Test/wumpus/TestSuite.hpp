@@ -67,7 +67,42 @@ public:
         wr.buildEnvironment();
 
     }
+    /** 
+     * @param playerPosition which is a position for an agent
+     * @return Percept
+     */
+    void test_getPercept()
+    {
+        Percept perr(bool stench, bool breez, bool glitter, bool bump, Coordinates playerPosition);
+        Coordinates playerPosition(3, 0);
+        Coordinates wumpusPosition(3, 1);
+	    Coordinates pitsPosition[3] = {
+					*new Coordinates(3, 2),
+					*new Coordinates(2, 2),
+					*new Coordinates(2, 0)
+					};
+        bool hasStench = false;
+        bool hasBreeze = false;
+        Percept per = wr.getPercept(playerPosition);
+        for (int i = 0; i < sizeof(pitsPosition); i++)
+        {
+            bool hasBreeze = wr.checkIfAdjacent(playerPosition, pitsPosition[i]);
+            if(hasBreeze)
+            {
 
+                TS_ASSERT_EQUALS(hasBreeze, true);
+                break;
+            }
+
+            bool hasStench = wr.checkIfAdjacent(playerPosition, wumpusPosition) and !wr.isWumpusDead;
+            if(hasStench)
+            {
+                TS_ASSERT_EQUALS(hasStench, true);
+            }
+        }
+        
+        
+    }
     /**
      * @return true if gold is taken by an agent
      */

@@ -32,11 +32,11 @@ private:
 	int colCount = 3;
 	int rowCount =3;
 	int row, col, num, countNoPits;
-	bool isGoldTaken = false;
-	bool isWumpusDead = false;
 	void killWumpus();
 	void takeGold();
 public:
+	bool isGoldTaken = false;
+	bool isWumpusDead = false;
 	Coordinates pitsPosition[3] = {
 					*new Coordinates(row, col),
 					*new Coordinates(row, col),
@@ -49,8 +49,9 @@ public:
 	vector<Coordinates> getAdjacentCells(Coordinates playerPosition);
 	bool checkIfAdjacent(Coordinates playerPosition, Coordinates mapElement);
 	void buildEnvironment();
+	Percept getPercept(Coordinates playerPosition);
 	bool goldtaken();
-   bool wumpusDead();
+   	bool wumpusDead();
 	Coordinates getGoldPosition();
 	Coordinates getWumpusPosition();
 	Coordinates getPitsPosition(int index);

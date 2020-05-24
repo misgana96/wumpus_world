@@ -192,6 +192,32 @@ Coordinates World::getPitsPosition(int index)
 	return pitsPosition[index];
 }
 
+/**
+ * @param playerPosition which is a position of an agent
+ * @return Percept which is perception of an agent from its adjacent cell
+ */
+Percept World::getPercept(Coordinates playerPosition)
+{
+	bool hasStench = false;
+	bool hasGlitter = false;
+	bool hasBump = false;
+	bool hasBreeze = false;
+
+	for (int i = 0; i < sizeof(pitsPosition); i++)
+	{
+		hasBreeze = checkIfAdjacent(playerPosition, pitsPosition[i]);
+		if (hasBreeze)
+		{
+			break;
+		}
+		
+		hasStench = checkIfAdjacent(playerPosition, wumpusPosition) and !isWumpusDead;
+
+		return Percept(hasBreeze, hasStench, hasGlitter, hasBump, playerPosition);
+	}
+	
+}
+
 void World::killWumpus()
 {
 	isWumpusDead = true;
